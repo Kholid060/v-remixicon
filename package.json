@@ -1,0 +1,28 @@
+{
+  "name": "v-remixicon",
+  "description": "Vue component wrapper for remixicon",
+  "version": "0.0.8",
+  "scripts": {
+    "build:icons": "node scripts/build.js",
+    "build:component": "rollup --config scripts/rollup.build.js",
+    "build": "yarn build:icons && yarn build:component"
+  },
+  "author": "Ahmad Kholid",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "icons.js",
+    "cjs"
+  ],
+  "main": "dist/v-remixicon.cjs.js",
+  "module": "dist/v-remixicon.esm.js",
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.4",
+    "fast-glob": "^3.2.7",
+    "rollup": "^2.56.2",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-vue": "^6.0.0-beta.10",
+    "vue": "^3.2.4"
+  },
+  "dependencies": {}
+}
