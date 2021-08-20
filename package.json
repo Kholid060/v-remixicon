@@ -1,9 +1,9 @@
 {
   "name": "v-remixicon",
   "description": "Vue component wrapper for remixicon",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "scripts": {
-    "build:icons": "node scripts/build.js",
+    "build:icons": "node scripts/icons.build.js",
     "build:component": "rollup --config scripts/rollup.build.js",
     "build": "yarn build:icons && yarn build:component"
   },
@@ -12,7 +12,8 @@
   "files": [
     "dist",
     "icons.js",
-    "cjs"
+    "cjs",
+    "icons.d.ts"
   ],
   "main": "dist/v-remixicon.cjs.js",
   "module": "dist/v-remixicon.esm.js",
