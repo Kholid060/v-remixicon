@@ -1,7 +1,7 @@
 {
   "name": "v-remixicon",
   "description": "Vue component wrapper for remixicon",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "scripts": {
     "build:icons": "node scripts/icons.build.js",
     "build:component": "rollup --config scripts/rollup.build.js",
@@ -19,11 +19,11 @@
   "module": "dist/v-remixicon.esm.js",
   "exports": {
     "import": {
-      "path": "dist/v-remixicon.esm.js",
+      "path": "./dist/v-remixicon.esm.js",
       "type": "module"
     },
     "require": {
-      "path": "dist/v-remixicon.cjs.js",
+      "path": "./dist/v-remixicon.cjs.js",
       "type": "commonjs"
     }
   },
