@@ -43,6 +43,7 @@ function convertToCjs(icons) {
 
   const cjsContent = convertToCjs(results);
 
+  await writeFile('icons.mjs', results);
   await writeFile('icons.js', results);
   await writeFile('icons.d.ts', iconsTypes);
   await writeFile('./cjs/icons.js', cjsContent);

@@ -52,6 +52,8 @@ export declare const riStore3Fill: string;
 export declare const riStore3Line: string;
 export declare const riStoreFill: string;
 export declare const riStoreLine: string;
+export declare const riAdvertisementFill: string;
+export declare const riAdvertisementLine: string;
 export declare const riArchiveDrawerFill: string;
 export declare const riArchiveDrawerLine: string;
 export declare const riArchiveFill: string;
