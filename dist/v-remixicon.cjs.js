@@ -30,61 +30,53 @@ var VRemix = {
       default: '',
     },
   },
-  lib: {},
-  add(icons) {
-    if (typeof icons === 'object' && icons !== null) {
-      this.lib = icons;
-    }
-  },
-  computed: {
-    icon() {
-      if (this.path) return path;
+  setup(props) {
+    const icons = vue.inject('remixicons');
+    const icon = vue.computed(() => {
+      if (props.path) return path;
       
-      const icon = this.$options.lib[this.name];
+      const icon = icons[props.name];
       
       if (typeof icon === 'undefined') {
-        console.error(`[v-remixicon] ${this.name} name of the icon is incorrect`);
+        console.error(`[v-remixicon] ${props.name} name of the icon is incorrect`);
         return;
       }
 
       return icon;
-    },
-  },
-  render() {
-    return vue.h(
+    });
+
+    return () => vue.h(
       'svg',
       {
-        viewBox: this.viewBox,
-        fill: this.fill,
-        height: this.size,
-        width: this.size,
+        viewBox: props.viewBox,
+        fill: props.fill,
+        height: props.size,
+        width: props.size,
         class: 'v-remixicon',
         xmlns: 'http://www.w3.org/2000/svg',
         style: {
-          transform: this.rotate ? `rotate(${this.rotate}deg)` : null,
+          transform: props.rotate ? `rotate(${props.rotate}deg)` : null,
         },
       },
       [
-        this.title ? vue.h('title', {}, this.title) : null,
+        props.title ? vue.h('title', {}, props.title) : null,
         vue.h('g', {}, [
           vue.h('path', { fill: 'none', d: 'M0 0h24v24H0z' }),
-          vue.h('path', { 'fill-rule': 'nonzero', d: this.icon }),
+          vue.h('path', { 'fill-rule': 'nonzero', d: icon.value }),
         ])
       ]
-    );
+    )
   }
 };
 
-const VRemixIcon = VRemix;
+const VRemixicon = VRemix;
 
 var index = {
-	install(app){
+	install(app, icons){
+		app.provide('remixicons', icons);
 		app.component(VRemix.name, VRemix);
 	},
-	add(icons){
-		VRemix.add(icons);
-	}
 };
 
-exports.VRemixIcon = VRemixIcon;
+exports.VRemixicon = VRemixicon;
 exports['default'] = index;

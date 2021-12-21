@@ -1,4 +1,4 @@
-import { h } from 'vue';
+import { h, inject, computed } from 'vue';
 
 export default {
   name: 'v-remixicon',
@@ -26,47 +26,41 @@ export default {
       default: '',
     },
   },
-  lib: {},
-  add(icons) {
-    if (typeof icons === 'object' && icons !== null) {
-      this.lib = icons;
-    }
-  },
-  computed: {
-    icon() {
-      if (this.path) return path;
+  setup(props) {
+    const icons = inject('remixicons');
+    const icon = computed(() => {
+      if (props.path) return path;
       
-      const icon = this.$options.lib[this.name];
+      const icon = icons[props.name];
       
       if (typeof icon === 'undefined') {
-        console.error(`[v-remixicon] ${this.name} name of the icon is incorrect`);
+        console.error(`[v-remixicon] ${props.name} name of the icon is incorrect`);
         return;
       }
 
       return icon;
-    },
-  },
-  render() {
-    return h(
+    });
+
+    return () => h(
       'svg',
       {
-        viewBox: this.viewBox,
-        fill: this.fill,
-        height: this.size,
-        width: this.size,
+        viewBox: props.viewBox,
+        fill: props.fill,
+        height: props.size,
+        width: props.size,
         class: 'v-remixicon',
         xmlns: 'http://www.w3.org/2000/svg',
         style: {
-          transform: this.rotate ? `rotate(${this.rotate}deg)` : null,
+          transform: props.rotate ? `rotate(${props.rotate}deg)` : null,
         },
       },
       [
-        this.title ? h('title', {}, this.title) : null,
+        props.title ? h('title', {}, props.title) : null,
         h('g', {}, [
           h('path', { fill: 'none', d: 'M0 0h24v24H0z' }),
-          h('path', { 'fill-rule': 'nonzero', d: this.icon }),
+          h('path', { 'fill-rule': 'nonzero', d: icon.value }),
         ])
       ]
-    );
+    )
   }
 };
