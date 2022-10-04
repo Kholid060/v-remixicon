@@ -29,7 +29,7 @@ export default {
   setup(props) {
     const icons = inject('remixicons');
     const icon = computed(() => {
-      if (props.path) return path;
+      if (props.path) return props.path;
       
       const icon = icons[props.name];
       
